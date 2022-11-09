@@ -112,6 +112,7 @@ mat_1.specularIntensity = 0
 mat_1.albedoTexture = characterLibrary.characters.madis.texture
 
 const madis = new Entity('madis')
+madis.setParent(scene)
 engine.addEntity(madis)
 
 madis.addComponent(new PlaneShape())

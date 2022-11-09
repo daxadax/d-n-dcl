@@ -1,15 +1,13 @@
-import { Scene } from './scene'
-
 export class StaticModel extends Entity {
   constructor(
     name: string,
     model: GLTFShape,
-    scene: Scene,
+    parent: Entity,
     transform: Transform
   ) {
     super(name)
     engine.addEntity(this)
-    this.setParent(scene)
+    this.setParent(parent)
     this.addComponent(transform)
 
     model.withCollisions = true
