@@ -79,10 +79,8 @@ export class Scene extends Entity {
 
       this.TAVERN_ENTITIES.forEach(function(e) {
         if ( e === entity.name ) { engine.removeEntity(entity) }
+        // TODO: update background sounds
       })
     }
-    // engine.removeEntity(engine.entities[this.GUILD_HALL])
-    // engine.removeEntity(engine.entities[this.GUILD_HALL_DOORS_INNER])
-    // engine.removeEntity(engine.entities[this.GUILD_HALL_DOORS_OUTER])
   }
 }
