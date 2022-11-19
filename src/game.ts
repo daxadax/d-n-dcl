@@ -4,6 +4,7 @@ const scene = new Scene()
 
 // internals
 import { CharacterLibrary } from './character_library'
+import { SoundLibrary } from './soundLibrary'
 import { DialogHelper } from './dialog_helper'
 import { Player } from './player'
 
@@ -12,9 +13,11 @@ scene.initialize()
 const canvas = new UICanvas()
 const player = new Player()
 const characterLibrary = new CharacterLibrary()
+const soundLibrary = new SoundLibrary()
 const dialogHelper = new DialogHelper(canvas, characterLibrary)
 
 player.initialize(characterLibrary)
+soundLibrary.playBackgroundMusic()
 
 ///////////////////////
 const dialog = {
