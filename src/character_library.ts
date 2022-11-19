@@ -20,11 +20,11 @@ export class CharacterLibrary {
   setPlayerCharacter(player: Player) {
     this.characters.player = this.buildCharacterAttributes(
       player.data.displayName,
-      new AvatarTexture(player.data.userId),
-      256,
-      256,
-      250,
-      250
+      new Texture('images/characters/player.png'),
+      900,
+      1098,
+      300,
+      350
     )
   }
 
