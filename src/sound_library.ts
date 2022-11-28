@@ -58,7 +58,7 @@ class BackgroundSound extends Entity {
 
     const source = new AudioSource(new AudioClip('sounds/'+ assetPath))
     source.loop = true
-    source.volume = 0.4
+    source.volume = 0.3
 
     this.setParent(Attachable.AVATAR)
     this.addComponent(source)
