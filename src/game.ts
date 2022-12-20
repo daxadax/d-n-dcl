@@ -21,17 +21,14 @@ const canvas = new UICanvas()
 const player = new Player()
 const characterLibrary = new CharacterLibrary()
 const soundLibrary = new SoundLibrary()
-const dialogHelper = new DialogHelper(canvas, characterLibrary)
+const dialogHelper = new DialogHelper(canvas, characterLibrary, scene)
 
 player.initialize(characterLibrary)
-soundLibrary.playBackgroundMusic()
+// soundLibrary.playBackgroundMusic()
 
 // character - madis
-// TODO: this makes more sense actually within the character library probably?
-// and then just initialize each character
-const madis = new StaticModel(
-  characterLibrary.characters.madis.name,
-  characterLibrary.characters.madis.model,
+const madis = characterLibrary.initializeCharacter(
+  'madis',
   scene,
   new Transform({
     position: new Vector3(8, 0.88, 16.5),
@@ -47,9 +44,8 @@ madis.addComponent(
   )
 )
 
-const ivor = new StaticModel(
-  characterLibrary.characters.ivor.name,
-  characterLibrary.characters.ivor.model,
+const ivor = characterLibrary.initializeCharacter(
+  'ivor',
   scene,
   new Transform({
     position: new Vector3(28.6, 0.88, 9.55),
@@ -65,9 +61,8 @@ ivor.addComponent(
   )
 )
 
-const luri = new StaticModel(
-  characterLibrary.characters.luri.name,
-  characterLibrary.characters.luri.model,
+const luri = characterLibrary.initializeCharacter(
+  'luri',
   scene,
   new Transform({
     position: new Vector3(8, 0.88, 4),

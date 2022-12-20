@@ -1,4 +1,6 @@
 import { Player } from './player'
+import { StaticModel } from './static_model'
+import { Scene } from './scene'
 
 class Character {
   name: string
@@ -8,7 +10,10 @@ class Character {
   sourceHeight: number
   width: number
   height: number
+  positionX: number
   dialogStage: number
+
+  entity!: Entity
 
   constructor(
     name: string,
@@ -20,6 +25,7 @@ class Character {
     this.sourceHeight = dimensions.sourceHeight
     this.width = dimensions.width
     this.height = dimensions.height
+    this.positionX = dimensions.positionX
     this.dialogStage = 0
     this.model = new GLTFShape('models/characters/'+ name +'.glb')
 
@@ -28,6 +34,10 @@ class Character {
 
   incrementDialogStage() {
     this.dialogStage ++
+  }
+
+  hideModel() {
+    this.entity.removeComponent(this.model)
   }
 }
 
@@ -41,9 +51,10 @@ export class CharacterLibrary {
         new Texture('images/characters/ivor.png'),
         {
           sourceWidth: 900,
-          sourceHeight: 1036,
+          sourceHeight: 851,
           width: 300,
-          height: 350
+          height: 300,
+          positionX: -70
         }
       ),
       luri: new Character(
@@ -53,7 +64,8 @@ export class CharacterLibrary {
           sourceWidth: 900,
           sourceHeight: 1036,
           width: 300,
-          height: 350
+          height: 350,
+          positionX: -50
         }
       ),
       madis: new Character(
@@ -63,11 +75,23 @@ export class CharacterLibrary {
           sourceWidth: 900,
           sourceHeight: 1036,
           width: 300,
-          height: 350
+          height: 350,
+          positionX: -50
         }
       ),
       player: null
     }
+  }
+
+  initializeCharacter(name: string, scene: Scene, transform: Transform) {
+    this.characters[name].entity = new StaticModel(
+      this.characters[name].name,
+      this.characters[name].model,
+      scene,
+      transform
+    )
+
+    return this.characters[name].entity
   }
 
   setPlayerCharacter(player: Player) {
@@ -78,7 +102,8 @@ export class CharacterLibrary {
         sourceWidth: 900,
         sourceHeight: 1098,
         width: 300,
-        height: 350
+        height: 350,
+        positionX: -60
       }
     )
   }

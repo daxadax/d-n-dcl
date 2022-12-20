@@ -1,9 +1,11 @@
 import { Response } from './factories/response'
 import { CharacterLibrary } from './character_library'
+import { Scene } from './scene'
 
 export class DialogHelper {
   canvas: UICanvas
   characterLibrary: CharacterLibrary
+  scene: Scene
   private promptWrapper: UIContainerRect
   private nametagWrapper: UIContainerRect
   private nametag: UIText
@@ -13,9 +15,10 @@ export class DialogHelper {
   private response1: Response
   private response2: Response
 
-  constructor(canvas: UICanvas, characterLibrary: CharacterLibrary) {
+  constructor(canvas: UICanvas, characterLibrary: CharacterLibrary, scene: Scene) {
     this.canvas = canvas
     this.characterLibrary = characterLibrary
+    this.scene = scene
 
     this.promptWrapper = new UIContainerRect(canvas);
     this.promptWrapper.color = Color4.Black()
@@ -51,7 +54,7 @@ export class DialogHelper {
     this.portrait = new UIImage(this.promptWrapper, new Texture(''))
     this.portrait.hAlign = 'left'
     this.portrait.vAlign = 'bottom'
-    this.portrait.positionX = -50
+    this.portrait.positionX = 100
     this.portrait.width = 300
     this.portrait.height = 350
     this.portrait.sourceWidth = 900
@@ -76,11 +79,25 @@ export class DialogHelper {
 
   say(characterName: string, dialogOptions: any) {
     const character = this.characterLibrary.characters[characterName]
+    const currentLocation = this.scene.currentLocation
     this.resetDialog(character)
 
     // i fucking hate this, but not sure a cleaner way to test if i'm at the top level
-    if ( parseInt(Object.keys(dialogOptions)[0]) === 0 ) {
-      dialogOptions = dialogOptions[character.dialogStage]
+    // have to use indexOf instead of includes cause sdk hates updated js
+    // https://stackoverflow.com/a/55652107
+    if ( Object.keys(dialogOptions).indexOf(currentLocation) !== -1 ) {
+      dialogOptions = dialogOptions[currentLocation][character.dialogStage]
+    }
+
+    // mark the end of a dialog stage if indicated
+    if ( dialogOptions.stageEnd ) { character.dialogStage += 1 }
+
+    // handle skill checks
+    // TODO: indicate success or failure
+    if ( dialogOptions.skillCheck ) {
+      var outcome = this.rollD20() > dialogOptions.skillCheck ? 'success' : 'failure'
+
+      this.say(characterName, dialogOptions[outcome])
     }
 
     const chunkedText = dialogOptions.dialog.match(/.{1,80}(\s|$)/g) || []
@@ -107,7 +124,7 @@ export class DialogHelper {
 
     if ( !dialogOptions.playerResponses && !dialogOptions.npcResponse ) {
       // TODO: this should be on the character model directly
-      if ( dialogOptions.stageEnd ) { character.dialogStage += 1 }
+      this.performAction(dialogOptions.action, character)
 
       this.response2.setKey('end conversation')
       this.response2.selector.onClick = new OnClick(() => { this.hideDialogBox() })
@@ -117,8 +134,13 @@ export class DialogHelper {
     this.showDialogBox()
   }
 
+  private rollD20() {
+    return Math.floor(Math.random() * ((20 - 1) + 1) + 1)
+  }
+
   private resetDialog(character: any) {
     // reset portrait
+    this.portrait.positionX = character.positionX
     this.portrait.source = character.texture
     this.portrait.sourceWidth = character.sourceWidth
     this.portrait.sourceHeight = character.sourceHeight
@@ -147,5 +169,11 @@ export class DialogHelper {
   private hideDialogBox() {
     this.promptWrapper.visible = false
     this.promptWrapper.visible = false
+  }
+
+  private performAction(action: string, character: any) {
+    if ( action === "removeModel" ) {
+      character.hideModel()
+    }
   }
 }

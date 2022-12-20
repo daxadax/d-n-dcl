@@ -1,6 +1,8 @@
 import { StaticModel } from './static_model'
 
 export class Scene extends Entity {
+  currentLocation = 'guild_hall'
+
   GUILD_HALL = 'guild_hall'
   GUILD_HALL_DOORS_INNER = 'guild_hall_doors_inner'
   GUILD_HALL_DOORS_OUTER = 'guild_hall_doors_outer'
@@ -56,6 +58,8 @@ export class Scene extends Entity {
   }
 
   transitionToForest() {
+    this.currentLocation = 'forest'
+
     for (const child in this.children) {
       const entity = this.children[child] as Entity
 
