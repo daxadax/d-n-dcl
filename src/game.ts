@@ -1,3 +1,7 @@
+// TODO: require gold from madis before getting potion
+// TODO: require potion and talking to ivor before leaving tavern
+// TODO: lock character position when in dialog
+
 // base scene element
 import { Scene } from './scene'
 const scene = new Scene()
