@@ -41,7 +41,7 @@ export class Scene extends Entity {
       guildHallDoorsModel,
       this,
       new Transform({
-        position: new Vector3(15.99, 0, 21),
+        position: new Vector3(15.89, 0, 21),
         rotation: Quaternion.Euler(0, 90, 0),
         scale: new Vector3(1, 1, 1)
       })
@@ -51,24 +51,6 @@ export class Scene extends Entity {
       new OnPointerDown(
         (e) => { this.transitionToForest() },
         { button: ActionButton.PRIMARY, hoverText: "Exit the Smoldering Widow" }
-      )
-    )
-
-    const guildHallDoorsOuter = new StaticModel(
-      this.GUILD_HALL_DOORS_OUTER,
-      guildHallDoorsModel,
-      this,
-      new Transform({
-        position: new Vector3(16.01, 0, 21),
-        rotation: Quaternion.Euler(0, 90, 0),
-        scale: new Vector3(1, 1, 1)
-      })
-    )
-
-    guildHallDoorsOuter.addComponent(
-      new OnPointerDown(
-        (e) => { log('yo') },
-        { button: ActionButton.PRIMARY, hoverText: "Enter the Smoldering Widow" }
       )
     )
   }
