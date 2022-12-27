@@ -1,6 +1,10 @@
-// TODO: require gold from madis before getting potion
-// TODO: require potion and talking to ivor before leaving tavern
-// TODO: lock character position when in dialog
+// TODO
+// * indicate success or failure of dice rolls in dialog
+// * require gold from madis before getting potion
+// * require potion and talking to ivor before leaving tavern
+// * add forest portion (incl sounds)
+// * clean up dialog
+// * lock character position while in dialog
 
 // base scene element
 import { Scene } from './scene'
@@ -31,7 +35,7 @@ const madis = characterLibrary.initializeCharacter(
   'madis',
   scene,
   new Transform({
-    position: new Vector3(8, 0.88, 16.5),
+    position: new Vector3(8, 0.75, 16.5),
     rotation: Quaternion.Euler(0, 0, 0),
     scale: new Vector3(1, 1 ,1)
   })
@@ -48,7 +52,7 @@ const ivor = characterLibrary.initializeCharacter(
   'ivor',
   scene,
   new Transform({
-    position: new Vector3(28.6, 0.88, 9.55),
+    position: new Vector3(28.6, 0.75, 9.55),
     rotation: Quaternion.Euler(0, 240, 0),
     scale: new Vector3(1, 1 ,1)
   })
@@ -65,7 +69,7 @@ const luri = characterLibrary.initializeCharacter(
   'luri',
   scene,
   new Transform({
-    position: new Vector3(8, 0.88, 4),
+    position: new Vector3(8, 0.75, 4),
     rotation: Quaternion.Euler(0, 45, 0),
     scale: new Vector3(1, 1 ,1)
   })
