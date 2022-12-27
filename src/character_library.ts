@@ -1,6 +1,7 @@
 import { Player } from './player'
 import { StaticModel } from './static_model'
 import { Scene } from './scene'
+import { MovementBind } from './movementBind'
 
 class Character {
   name: string
@@ -14,6 +15,9 @@ class Character {
   dialogStage: number
 
   entity!: Entity
+
+  private movementBind: MovementBind
+  private isBound: boolean = false
 
   constructor(
     name: string,
@@ -29,11 +33,28 @@ class Character {
     this.dialogStage = 0
     this.model = new GLTFShape('models/characters/'+ name +'.glb')
 
+    // initialize movementBind
+    this.movementBind = new MovementBind()
+
     return this
   }
 
   incrementDialogStage() {
     this.dialogStage ++
+  }
+
+  restrictMovement() {
+    if ( this.isBound ) { return null }
+
+    this.movementBind.bind()
+    this.isBound = true
+  }
+
+  unrestrictMovement() {
+    if ( !this.isBound ) { return null }
+
+    this.movementBind.loose()
+    this.isBound = false
   }
 
   hideModel() {
@@ -106,9 +127,5 @@ export class CharacterLibrary {
         positionX: -60
       }
     )
-  }
-
-  incrementDialogStage(name: string) {
-    this.characters[name].incrementDialogStage()
   }
 }

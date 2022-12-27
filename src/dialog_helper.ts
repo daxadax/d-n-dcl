@@ -79,7 +79,13 @@ export class DialogHelper {
 
   say(characterName: string, dialogOptions: any) {
     const character = this.characterLibrary.characters[characterName]
+    const player = this.characterLibrary.characters['player']
     const currentLocation = this.scene.currentLocation
+
+    // lock player character so they can't move until dialog is finished
+    player.restrictMovement()
+
+    // reset dialog box
     this.resetDialog(character)
 
     // i don't love this, but not sure a cleaner way to test if i'm at the top level
@@ -90,7 +96,7 @@ export class DialogHelper {
     }
 
     // mark the end of a dialog stage if indicated
-    if ( dialogOptions.stageEnd ) { character.dialogStage += 1 }
+    if ( dialogOptions.stageEnd ) { character.incrementDialogStage() }
 
     // handle skill checks
     // TODO: indicate success or failure
@@ -127,7 +133,10 @@ export class DialogHelper {
       this.performAction(dialogOptions.action, character)
 
       this.response2.setKey('end conversation')
-      this.response2.selector.onClick = new OnClick(() => { this.hideDialogBox() })
+      this.response2.selector.onClick = new OnClick(() => {
+        this.hideDialogBox()
+        player.unrestrictMovement()
+      })
     }
 
     this.dialog.value = chunkedText.join("\n")

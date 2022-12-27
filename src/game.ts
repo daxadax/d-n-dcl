@@ -4,7 +4,6 @@
 // * require potion and talking to ivor before leaving tavern
 // * add forest portion (incl sounds)
 // * clean up dialog
-// * lock character position while in dialog
 
 // base scene element
 import { Scene } from './scene'
