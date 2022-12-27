@@ -82,7 +82,7 @@ export class DialogHelper {
     const currentLocation = this.scene.currentLocation
     this.resetDialog(character)
 
-    // i fucking hate this, but not sure a cleaner way to test if i'm at the top level
+    // i don't love this, but not sure a cleaner way to test if i'm at the top level
     // have to use indexOf instead of includes cause sdk hates updated js
     // https://stackoverflow.com/a/55652107
     if ( Object.keys(dialogOptions).indexOf(currentLocation) !== -1 ) {
