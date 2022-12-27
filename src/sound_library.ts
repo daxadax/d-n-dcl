@@ -1,13 +1,22 @@
 export class SoundLibrary {
   library: any
 
+  private backgroundMusicMap = {
+    "guild_hall": ["tavern_music", "tavern_voices"],
+    "forest": ["forest_music"]
+  }
+
   constructor() {
     const tavern_music = new BackgroundSound('tavern_music.mp3')
     const tavern_voices = new BackgroundSound('tavern_voices.mp3')
+    const forest_music = new BackgroundSound('forest_music.mp3')
+    const turtle = new Sound('turtle.mp3')
 
     this.library =  {
       tavern_music: tavern_music,
-      tavern_voices: tavern_voices
+      tavern_voices: tavern_voices,
+      forest_music: forest_music,
+      turtle: turtle
     }
   }
 
@@ -23,15 +32,20 @@ export class SoundLibrary {
     this.library[name].getComponent(AudioSource).playing = false
   }
 
-  // TODO: needs to be location based later (forest / tavern / boss / etc)
-  playBackgroundMusic() {
-    this.library['tavern_music'].getComponent(AudioSource).playing = true
-    this.library['tavern_voices'].getComponent(AudioSource).playing = true
+  playBackgroundMusic(location: string) {
+    const self = this
+
+    this.backgroundMusicMap[location].forEach(function(track) {
+      self.library[track].getComponent(AudioSource).playing = true
+    })
   }
 
-  pauseBackgroundMusic() {
-    this.library['tavern_music'].getComponent(AudioSource).playing = false
-    this.library['tavern_voices'].getComponent(AudioSource).playing = false
+  pauseBackgroundMusic(location: string) {
+    const self = this
+
+    this.backgroundMusicMap[location].forEach(function(track) {
+      self.library[track].getComponent(AudioSource).playing = false
+    })
   }
 }
 

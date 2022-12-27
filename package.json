@@ -21,10 +21,12 @@
     "npm": ">=6.0.0"
   },
   "dependencies": {
+    "@dcl/ecs-scene-utils": "^1.7.5",
     "@dcl/ui-scene-utils": "^1.8.4",
     "decentraland": "^3.12.3"
   },
-  "bundleDependencies": [
-    "@dcl/ui-scene-utils"
+  "bundledDependencies": [
+    "@dcl/ui-scene-utils",
+    "@dcl/ecs-scene-utils"
   ]
 }

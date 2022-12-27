@@ -1,11 +1,11 @@
 import { Response } from './factories/response'
 import { CharacterLibrary } from './character_library'
-import { Scene } from './scene'
 
 export class DialogHelper {
   canvas: UICanvas
   characterLibrary: CharacterLibrary
-  scene: Scene
+  currentLocation!: string
+
   private promptWrapper: UIContainerRect
   private nametagWrapper: UIContainerRect
   private nametag: UIText
@@ -15,10 +15,9 @@ export class DialogHelper {
   private response1: Response
   private response2: Response
 
-  constructor(canvas: UICanvas, characterLibrary: CharacterLibrary, scene: Scene) {
+  constructor(canvas: UICanvas, characterLibrary: CharacterLibrary) {
     this.canvas = canvas
     this.characterLibrary = characterLibrary
-    this.scene = scene
 
     this.promptWrapper = new UIContainerRect(canvas);
     this.promptWrapper.color = Color4.Black()
@@ -77,10 +76,14 @@ export class DialogHelper {
     this.response2 = new Response(this.promptWrapper, -70)
   }
 
+  setCurrentLocation(location: string) {
+    this.currentLocation = location
+  }
+
   say(characterName: string, dialogOptions: any) {
     const character = this.characterLibrary.characters[characterName]
     const player = this.characterLibrary.characters['player']
-    const currentLocation = this.scene.currentLocation
+    const currentLocation = this.currentLocation
 
     // lock player character so they can't move until dialog is finished
     player.restrictMovement()
@@ -140,6 +143,13 @@ export class DialogHelper {
 
     this.dialog.value = chunkedText.join("\n")
     this.showDialogBox()
+  }
+
+  displayEndDemoText() {
+    const text = new UIText(this.canvas)
+    text.value = "You can complete this task in the full version of this game"
+    text.vAlign = "bottom"
+    text.hAlign = "center"
   }
 
   private rollD20() {
