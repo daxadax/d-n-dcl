@@ -99,7 +99,6 @@ export class DialogHelper {
     if ( dialogOptions.stageEnd ) { character.incrementDialogStage() }
 
     // handle skill checks
-    // TODO: indicate success or failure
     if ( dialogOptions.skillCheck ) {
       var outcome = this.rollD20() > dialogOptions.skillCheck ? 'success' : 'failure'
 

@@ -15,7 +15,6 @@ export const dialogIvor = {
                   character: "ivor",
                   dialog: "Unnecessary. Let's go",
                   stageEnd: true,
-                  // action: "removeModel"
                 }
               },
               "*reply rudely*": {
@@ -24,7 +23,6 @@ export const dialogIvor = {
                   character: "ivor",
                   dialog: "Look at you, not much better. Let's go",
                   stageEnd: true,
-                  // action: "removeModel"
                 }
               },
               "*stare at ivor*": {
@@ -33,7 +31,6 @@ export const dialogIvor = {
                   character: 'ivor',
                   dialog: "*ivor stares back at you until you feel awkward*",
                   stageEnd: true,
-                  // action: "removeModel"
                 }
               }
             }
@@ -48,7 +45,6 @@ export const dialogIvor = {
               character: 'ivor',
               dialog: "Let's go",
               stageEnd: true,
-              // action: "removeModel"
             }
           }
         }

@@ -1,5 +1,4 @@
 // TODO
-// * indicate success or failure of dice rolls in dialog
 // * require gold from madis before getting potion
 // * require potion and talking to ivor before leaving tavern
 // * add forest portion (incl sounds)
