@@ -1,6 +1,8 @@
 // TODO
 // * clean up dialog
 // * add sound back in
+// * add standing ivor model in forest
+// * add transition with logo in between tavern and forest
 
 // base scene element
 import { Scene } from './scene'
