@@ -1,7 +1,7 @@
 // TODO
-// * don't allow player to leave before talking to ivor
 // * clean up dialog
 // * make a way to exit game after the ending
+// * add sound back in
 
 // base scene element
 import { Scene } from './scene'

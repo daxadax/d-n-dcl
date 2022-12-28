@@ -5,6 +5,7 @@ export const dialogIvor = {
     },
     1: {
       dialog: '*ivor stares at you*',
+      actions: [{character: "player", type: "receiveItem", item: "ivors_assistance"}],
       playerResponses: {
         "Can you take me to the beast?": {
           dialog: "I was told that you could take me to the beast, is that true?",

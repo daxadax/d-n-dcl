@@ -109,11 +109,15 @@ export class Scene extends Entity {
     guildHallDoorsInner.addComponent(
       new OnPointerDown(
         (e) => {
-          if ( this.characterLibrary.characters['player'].hasItem('flammable_oil') ) {
-            this.transitionToForest()
-          } else {
-            this.dialogHelper.displayText("You can't leave the guild hall yet!")
+          if ( !this.characterLibrary.characters['player'].hasItem('flammable_oil') ) {
+            return this.dialogHelper.displayText("You need to collect supplies before leaving!")
           }
+
+          if ( !this.characterLibrary.characters['player'].hasItem('ivors_assistance') ) {
+            return this.dialogHelper.displayText("You leave the tavern and nearly get lost, you need more help than just this old map")
+          }
+
+          this.transitionToForest()
         },
         { button: ActionButton.PRIMARY, hoverText: "Exit the Smoldering Widow" }
       )
