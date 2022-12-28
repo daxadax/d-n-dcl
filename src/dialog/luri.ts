@@ -30,6 +30,11 @@ export const dialogLuri = {
         },
         "I need oil, not a passive agressive merchant": {
           dialog: "I'm in a hurry, I don't have time for your sterotypes - just give me the oil and we'll be done here",
+          action: {
+            character: "luri",
+            type: "updateAvatar",
+            path: "luri-unhappy.png"
+          },
           npcResponse: {
             character: 'luri',
             dialog: "Yes, yes, of course. But you could have been more polite. I hope this is the last time we see each other. Here’s your oil, you owe me 30 gold pieces.",
@@ -75,6 +80,11 @@ export const dialogLuri = {
           },
           failure: {
             dialog: "[faillure] *You try to make a comparison between the flammable oil and her bright red hair, but it sounds super weird*",
+            action: {
+              character: "luri",
+              type: "updateAvatar",
+              path: "luri-unhappy.png"
+            },
             npcResponse: {
               character: 'luri',
               dialog: "...that will be 30 gold",

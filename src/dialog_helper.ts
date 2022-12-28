@@ -110,6 +110,10 @@ export class DialogHelper {
       this.say(characterName, dialogOptions[outcome])
     }
 
+    // TODO: this should be on the character model directly
+    // perform any actions as a result of dialog choice
+    this.performAction(dialogOptions.action)
+
     const chunkedText = dialogOptions.dialog.match(/.{1,80}(\s|$)/g) || []
 
     if ( dialogOptions.playerResponses ) {
@@ -133,9 +137,6 @@ export class DialogHelper {
     }
 
     if ( !dialogOptions.playerResponses && !dialogOptions.npcResponse ) {
-      // TODO: this should be on the character model directly
-      this.performAction(dialogOptions.action)
-
       this.response2.setKey('end conversation')
       this.response2.selector.onClick = new OnClick(() => {
         this.hideDialogBox()
@@ -191,19 +192,26 @@ export class DialogHelper {
   private performAction(action: any) {
     if ( action === undefined ) { return null }
 
+    log("performing action: "+ action.type)
+    const character = this.characterLibrary.characters[action.character]
+
     if ( action.type === "removeModel" ) {
-      this.characterLibrary.characters[action.character].hideModel()
+      character.hideModel()
     }
 
     if ( action.type === "unlockDialog" ) {
       // NOTE: In theory, dialog stage should be unlocked for a location
       // (forest, guild_hall, etc) - but that is not needed rn so won't
       // implement as it causes extra complexity.
-      this.characterLibrary.characters[action.character].incrementDialogStage()
+      character.incrementDialogStage()
     }
 
     if ( action.type === "receiveItem" ) {
-      this.characterLibrary.characters[action.character].addItem(action.item)
+      character.addItem(action.item)
+    }
+
+    if ( action.type === "updateAvatar" ) {
+      character.texture = new Texture('images/characters/'+ action.path)
     }
   }
 }
