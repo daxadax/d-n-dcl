@@ -65,7 +65,7 @@ export class DialogHelper {
 
     this.nametagWrapper = new UIContainerRect(this.promptWrapper)
     this.nametagWrapper.color = Color4.Black()
-    this.nametagWrapper.width  = 250
+    this.nametagWrapper.width = 275
     this.nametagWrapper.height = 50
     this.nametagWrapper.hAlign = 'left'
     this.nametagWrapper.vAlign = 'top'
@@ -74,12 +74,12 @@ export class DialogHelper {
     this.nametagWrapper.visible = true
 
     this.nametag = new UIText(this.nametagWrapper)
-    this.nametag.width = 100
+    this.nametag.width = 200
     this.nametag.font = new Font(Fonts.SanFrancisco)
     this.nametag.fontSize = 18
     this.nametag.vAlign = 'top'
     this.nametag.hAlign = 'right'
-    this.nametag.positionX = 20
+    this.nametag.positionX = -100
     this.nametag.positionY = 20
     this.nametag.color = Color4.White()
     this.nametag.value = 'Madis'
@@ -222,6 +222,13 @@ export class DialogHelper {
 
     // reset nametag
     this.nametag.value = character.name
+    if ( character.name.length > 4 ) {
+      this.nametagWrapper.width = 250 + character.name.length * 5
+      this.nametag.positionX = 120 - character.name.length * 5
+    } else {
+      this.nametagWrapper.width = 275
+      this.nametag.positionX = 120
+    }
 
     // reset text
     this.response0.setKey('')
