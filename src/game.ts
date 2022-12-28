@@ -1,5 +1,7 @@
 // TODO
-// * require potion and talking to ivor before leaving tavern
+// * require potion before leaving tavern
+// * talking to ivor brings him to the forest (otherwise not there)
+// * luri avatar shift
 // * clean up dialog
 
 // base scene element
