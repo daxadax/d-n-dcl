@@ -240,6 +240,8 @@ export class Scene extends Entity {
   }
 
   transitionToForest() {
+    this.dialogHelper.displayLoadingScreen()
+
     for (const child in this.children) {
       const entity = this.children[child] as Entity
 

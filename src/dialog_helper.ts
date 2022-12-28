@@ -1,4 +1,5 @@
 import * as ui from '@dcl/ui-scene-utils'
+import * as utils from '@dcl/ecs-scene-utils'
 
 import { Response } from './factories/response'
 import { CharacterLibrary } from './character_library'
@@ -8,6 +9,9 @@ export class DialogHelper {
   characterLibrary: CharacterLibrary
   currentLocation!: string
 
+  private loadingScreen: UIContainerRect
+  private logo: UIImage
+  private loadingScreenText: UIText
   private promptWrapper: UIContainerRect
   private nametagWrapper: UIContainerRect
   private nametag: UIText
@@ -20,6 +24,34 @@ export class DialogHelper {
   constructor(canvas: UICanvas, characterLibrary: CharacterLibrary) {
     this.canvas = canvas
     this.characterLibrary = characterLibrary
+
+    this.loadingScreen = new UIContainerRect(this.canvas)
+    this.loadingScreen.width = '100%'
+    this.loadingScreen.height = '125%'
+    this.loadingScreen.color = Color4.Black()
+    this.loadingScreen.visible = false
+
+    this.logo = new UIImage(this.loadingScreen, new Texture('images/logo.png'))
+    this.logo.width = 800
+    this.logo.height = 600
+    this.logo.sourceWidth = 800
+    this.logo.sourceHeight = 600
+    this.logo.sourceTop = 0
+    this.logo.sourceLeft = 0
+    this.logo.vAlign = "top"
+    this.logo.positionY = -20
+    this.logo.visible = true
+
+    this.loadingScreenText = new UIText(this.loadingScreen)
+    this.loadingScreenText.color = Color4.White()
+    this.loadingScreenText.width  = 60
+    this.loadingScreenText.height = 600
+    this.loadingScreenText.hAlign = 'center'
+    this.loadingScreenText.vAlign = 'center'
+    this.loadingScreenText.positionY = 40
+    this.loadingScreenText.visible = true
+    this.loadingScreenText.fontSize = 24
+    this.loadingScreenText.value = "loading..."
 
     this.promptWrapper = new UIContainerRect(canvas);
     this.promptWrapper.color = Color4.Black()
@@ -134,8 +166,6 @@ export class DialogHelper {
       })
     }
 
-    log('dialog', dialogOptions)
-
     if ( dialogOptions.npcResponse ) {
       this.response2.setKey('next')
       this.response2.selector.onClick = new OnClick(() => {
@@ -151,16 +181,14 @@ export class DialogHelper {
       })
     }
 
+    // TODO: this is pretty messy
     var chunkedText = dialogOptions.dialog.match(/.{1,80}(\s|$)/g) || []
     chunkedText = chunkedText.flatMap(function(e) { return e.split("\n") })
-    log('length', chunkedText.length)
     const linesToAdd = 4 - chunkedText.length
-
     var i
 
     for(i = 1; i <= linesToAdd; i ++) {
       chunkedText.push(" ")
-      log(i, chunkedText)
     }
 
     this.dialog.value = chunkedText.join("\n")
@@ -169,6 +197,14 @@ export class DialogHelper {
 
   displayText(textToDisplay: string) {
     ui.displayAnnouncement(textToDisplay)
+  }
+
+  displayLoadingScreen() {
+    this.loadingScreen.visible = true
+
+    utils.setTimeout(4000, ()=>{
+      this.loadingScreen.visible = false
+    })
   }
 
   private rollD20() {

@@ -1,7 +1,6 @@
 // TODO
 // * add sound back in
 // * add standing ivor model in forest
-// * add transition with logo in between tavern and forest
 
 // base scene element
 import { Scene } from './scene'
@@ -20,6 +19,7 @@ const modelLibrary = new ModelLibrary()
 const characterLibrary = new CharacterLibrary(modelLibrary)
 const dialogHelper = new DialogHelper(canvas, characterLibrary)
 
+dialogHelper.displayLoadingScreen()
 player.initialize(characterLibrary)
 
 // build scene
