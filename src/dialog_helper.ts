@@ -112,7 +112,11 @@ export class DialogHelper {
 
     // TODO: this should be on the character model directly
     // perform any actions as a result of dialog choice
-    this.performAction(dialogOptions.action)
+    const self = this
+    const actions = dialogOptions.actions || []
+    actions.forEach(function(action: any) {
+      self.performAction(action)
+    })
 
     const chunkedText = dialogOptions.dialog.match(/.{1,80}(\s|$)/g) || []
 

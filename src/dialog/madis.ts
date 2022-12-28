@@ -2,6 +2,10 @@ export const dialogMadis = {
   guild_hall: {
     0: {
       dialog: 'Oooh, looks like we have a new addition to our ranks. Make yourself comfortable, my friend, and tell us why you have come to the home of all former, living, and future legends!',
+      actions: [
+        {character: "luri", location: "guild_hall", type: "unlockDialog"},
+        {character: "ivor", location: "guild_hall", type: "unlockDialog"}
+      ],
       playerResponses: {
         "I'm looking for work": {
           dialog: "*You place an order for a tortoise on the broad countertop*\nI’ve heard there’s money to be made here. And I could use it.",
@@ -14,12 +18,7 @@ export const dialogMadis = {
               npcResponse: {
                 character: "madis",
                 dialog: "Our weapons do not harm it. Take some gold and buy some oil for weapons, I can recommend a flame, it will both illuminate the target and cause a good wound. When you figure it out, bring something to prove it, and I’ll give you the rest of the reward. \n*Madis holds out a purse of money and a map.*",
-                stageEnd: true,
-                action: {
-                  character: "luri",
-                  location: "guild_hall",
-                  type: "unlockDialog"
-                }
+                stageEnd: true
               }
             }
           }
@@ -35,12 +34,7 @@ export const dialogMadis = {
               npcResponse: {
                 character: 'madis',
                 dialog: "Our weapons do not harm it. Take some gold and buy some oil for weapons, I can recommend a flame, it will both illuminate the target and cause a good wound. When you figure it out, bring something to prove it, and I’ll give you the rest of the reward. \n*Madis holds out a purse of money and a map.*",
-                stageEnd: true,
-                action: {
-                  character: "luri",
-                  location: "guild_hall",
-                  type: "unlockDialog"
-                }
+                stageEnd: true
               }
             }
           }
@@ -64,12 +58,7 @@ export const dialogMadis = {
                       npcResponse: {
                         character: 'madis',
                         dialog: "Our weapons do not harm it. Take some gold and buy some oil for weapons, I can recommend a flame, it will both illuminate the target and cause a good wound. When you figure it out, bring something to prove it, and I’ll give you the rest of the reward. \n*Madis holds out a purse of money and a map.*",
-                        stageEnd: true,
-                        action: {
-                          character: "luri",
-                          location: "guild_hall",
-                          type: "unlockDialog"
-                        }
+                        stageEnd: true
                       }
                     }
                   }
@@ -94,12 +83,7 @@ export const dialogMadis = {
                       npcResponse: {
                         character: 'madis',
                         dialog: "Our weapons do not harm it. Take some gold and buy some oil for weapons, I can recommend a flame, it will both illuminate the target and cause a good wound. When you figure it out, bring something to prove it, and I’ll give you the rest of the reward. \n*Madis holds out a purse of money and a map.*",
-                        stageEnd: true,
-                        action: {
-                          character: "luri",
-                          location: "guild_hall",
-                          type: "unlockDialog"
-                        }
+                        stageEnd: true
                       }
                     }
                   }

@@ -5,6 +5,7 @@ export const dialogLuri = {
     },
     1: {
       dialog: "Oh, new faces, yeah, plain-looking, dirty cloak, means adventurer, means healing potions, wound ointments, antidote. Would you like a purse?",
+      actions: [{character: "player", type: "receiveItem", item: "flammable_oil"}],
       playerResponses: {
         "I'd just like some oil..": {
           dialog: "I just need some fuel oil for my axe, that’s all",
@@ -17,12 +18,7 @@ export const dialogLuri = {
                 npcResponse: {
                   character: 'luri',
                   dialog: "*Luri hands you a small jar with a viscous liquid inside*",
-                  stageEnd: true,
-                  action: {
-                    character: "player",
-                    type: "receiveItem",
-                    item: "flammable_oil"
-                  }
+                  stageEnd: true
                 }
               }
             }
@@ -30,31 +26,17 @@ export const dialogLuri = {
         },
         "I need oil, not a passive agressive merchant": {
           dialog: "I'm in a hurry, I don't have time for your sterotypes - just give me the oil and we'll be done here",
-          action: {
-            character: "luri",
-            type: "updateAvatar",
-            path: "luri-unhappy.png"
-          },
+          actions: [{character: "luri", type: "updateAvatar", path: "luri-unhappy.png"}],
           npcResponse: {
             character: 'luri',
             dialog: "Yes, yes, of course. But you could have been more polite. I hope this is the last time we see each other. Here’s your oil, you owe me 30 gold pieces.",
             stageEnd: true,
             playerResponses: {
               "*pay and walk away*": {
-                  dialog: "*You silently give her the gold and leave*",
-                  action: {
-                    character: "player",
-                    type: "receiveItem",
-                    item: "flammable_oil"
-                  }
+                dialog: "*You silently give her the gold and leave*",
               },
               "I hope so too!": {
-                dialog: "*You pluck the gold from your purse and throw it at Luri* I hope so too!",
-                action: {
-                  character: "player",
-                  type: "receiveItem",
-                  item: "flammable_oil"
-                }
+                dialog: "*You pluck the gold from your purse and throw it at Luri* I hope so too!"
               }
             }
           }
@@ -67,11 +49,6 @@ export const dialogLuri = {
               character: 'luri',
               dialog: "I’d be glad if you’d come back here with a cartload of gold. Here’s your oil, let's call it 15 gold pieces. I hope to see you again.",
               stageEnd: true,
-              action: {
-                character: "player",
-                type: "receiveItem",
-                item: "flammable_oil"
-              },
               npcResponse: {
                 character: 'player',
                 dialog: "For the sake of such a shopkeeper I'll certainly be back",
@@ -80,23 +57,14 @@ export const dialogLuri = {
           },
           failure: {
             dialog: "[faillure] *You try to make a comparison between the flammable oil and her bright red hair, but it sounds super weird*",
-            action: {
-              character: "luri",
-              type: "updateAvatar",
-              path: "luri-unhappy.png"
-            },
+            actions: [{character: "luri", type: "updateAvatar", path: "luri-unhappy.png"}],
             npcResponse: {
               character: 'luri',
               dialog: "...that will be 30 gold",
               stageEnd: true,
               npcResponse: {
                 character: 'player',
-                dialog: "*You refrain from making eye contact, place the money on the counter and leave*",
-                action: {
-                  character: "player",
-                  type: "receiveItem",
-                  item: "flammable_oil"
-                }
+                dialog: "*You refrain from making eye contact, place the money on the counter and leave*"
               }
             }
           }

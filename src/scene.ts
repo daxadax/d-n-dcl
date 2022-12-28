@@ -84,7 +84,6 @@ export class Scene extends Entity {
     guildHallDoorsInner.addComponent(
       new OnPointerDown(
         (e) => {
-          log( this.characterLibrary.characters['player'].items )
           if ( this.characterLibrary.characters['player'].hasItem('flammable_oil') ) {
             this.transitionToForest()
           } else {

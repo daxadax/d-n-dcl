@@ -1,6 +1,9 @@
 export const dialogIvor = {
   guild_hall: {
     0: {
+      dialog: '*the man stares at you*'
+    },
+    1: {
       dialog: '*ivor stares at you*',
       playerResponses: {
         "Can you take me to the beast?": {
@@ -50,7 +53,7 @@ export const dialogIvor = {
         }
       }
     },
-    1: {
+    2: {
       dialog: "Let's go"
     }
   },
@@ -60,11 +63,3 @@ export const dialogIvor = {
     }
   }
 }
-
-// After completing each of the options, the dialogue will continue according to one scenario
-//
-// Player:
-// -Damn, I completely forgot, I need to take the oils, they will be useful to me.
-//
-// ivor:
-// - ...
