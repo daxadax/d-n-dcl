@@ -11,14 +11,22 @@ export const dialogMadis = {
           dialog: "*You place an order for a tortoise on the broad countertop*\nI’ve heard there’s money to be made here. And I could use it.",
           npcResponse: {
             character: 'madis',
-            dialog: "Do you like to get right to the point? I like that. Then I won’t keep you.\n*Madis slips his hand under the table, flips through the stacks of paper for a few minutes, and pulls out an old, dusty map.*",
+            dialog: "Do you like to get right to the point? I like that. Then I won’t keep you",
             npcResponse: {
               character: 'madis',
-              dialog: "This is a map of our forest. I hope you know how to navigate. It marks the location of the snapping turtle, which has scattered all the animals and birds in the neighboring woods. We should kill it, but there is a problem...",
+              dialog: "*Madis slips his hand under the table, flips through the stacks of paper, and pulls out an old, dusty map.*",
               npcResponse: {
-                character: "madis",
-                dialog: "Our weapons do not harm it. Take some gold and buy some oil for weapons, I can recommend a flame, it will both illuminate the target and cause a good wound. When you figure it out, bring something to prove it, and I’ll give you the rest of the reward. \n*Madis holds out a purse of money and a map.*",
-                stageEnd: true
+                character: 'madis',
+                dialog: "This is a map of our forest. I hope you know how to navigate. It marks the location of the snapping turtle, which has scattered all the animals and birds in the neighboring woods. We should kill it, but there is a problem...",
+                npcResponse: {
+                  character: "madis",
+                  dialog: "Our weapons do not harm it. Take some gold and buy some oil for weapons, I can recommend a flame, it will both illuminate the target and cause a good wound.",
+                  npcResponse: {
+                    character: "madis",
+                    dialog: "When the job is done, bring something to prove it, and I’ll give you the rest of the reward. \n*Madis holds out a purse of money and a map.*",
+                    stageEnd: true
+                  }
+                }
               }
             }
           }
@@ -32,9 +40,13 @@ export const dialogMadis = {
               character: 'madis',
               dialog: "This is a map of our forest. I hope you know how to navigate. It marks the location of the snapping turtle, which has scattered all the animals and birds in the neighboring woods. We should kill it, but there is a problem...",
               npcResponse: {
-                character: 'madis',
-                dialog: "Our weapons do not harm it. Take some gold and buy some oil for weapons, I can recommend a flame, it will both illuminate the target and cause a good wound. When you figure it out, bring something to prove it, and I’ll give you the rest of the reward. \n*Madis holds out a purse of money and a map.*",
-                stageEnd: true
+                character: "madis",
+                dialog: "Our weapons do not harm it. Take some gold and buy some oil for weapons, I can recommend a flame, it will both illuminate the target and cause a good wound.",
+                npcResponse: {
+                  character: "madis",
+                  dialog: "When the job is done, bring something to prove it, and I’ll give you the rest of the reward. \n*Madis holds out a purse of money and a map.*",
+                  stageEnd: true
+                }
               }
             }
           }
@@ -51,14 +63,18 @@ export const dialogMadis = {
                   dialog: "I saw this order and needed some money. So, what about your job, is that still available? Or has it already been done?",
                   npcResponse: {
                     character: 'madis',
-                    dialog: "Fortunately, or unfortunately not yet, depending on which way you look at it.\n*Madis reaches under the table and looks for a map.*",
+                    dialog: "Fortunately not, or unfortunately not yet, depending on which way you look at it.\n*Madis reaches under the table and looks for a map.*",
                     npcResponse: {
                       character: 'madis',
                       dialog: "This is a map of our forest. I hope you know how to navigate. It marks the location of the snapping turtle, which has scattered all the animals and birds in the neighboring woods. We should kill it, but there is a problem...",
                       npcResponse: {
-                        character: 'madis',
-                        dialog: "Our weapons do not harm it. Take some gold and buy some oil for weapons, I can recommend a flame, it will both illuminate the target and cause a good wound. When you figure it out, bring something to prove it, and I’ll give you the rest of the reward. \n*Madis holds out a purse of money and a map.*",
-                        stageEnd: true
+                        character: "madis",
+                        dialog: "Our weapons do not harm it. Take some gold and buy some oil for weapons, I can recommend a flame, it will both illuminate the target and cause a good wound.",
+                        npcResponse: {
+                          character: "madis",
+                          dialog: "When the job is done, bring something to prove it, and I’ll give you the rest of the reward. \n*Madis holds out a purse of money and a map.*",
+                          stageEnd: true
+                        }
                       }
                     }
                   }
@@ -76,14 +92,18 @@ export const dialogMadis = {
                   dialog: "I saw this order and needed some money. So, what about your job, is that still available? Or has it already been done?",
                   npcResponse: {
                     character: 'madis',
-                    dialog: "Fortunately, or unfortunately not yet, depending on which way you look at it.\n*Madis reaches under the table and looks for a map.*",
+                    dialog: "Fortunately not, or unfortunately not yet, depending on which way you look at it.\n*Madis reaches under the table and looks for a map.*",
                     npcResponse: {
                       character: 'madis',
                       dialog: "This is a map of our forest. I hope you know how to navigate. It marks the location of the snapping turtle, which has scattered all the animals and birds in the neighboring woods. We should kill it, but there is a problem...",
                       npcResponse: {
-                        character: 'madis',
-                        dialog: "Our weapons do not harm it. Take some gold and buy some oil for weapons, I can recommend a flame, it will both illuminate the target and cause a good wound. When you figure it out, bring something to prove it, and I’ll give you the rest of the reward. \n*Madis holds out a purse of money and a map.*",
-                        stageEnd: true
+                        character: "madis",
+                        dialog: "Our weapons do not harm it. Take some gold and buy some oil for weapons, I can recommend a flame, it will both illuminate the target and cause a good wound.",
+                        npcResponse: {
+                          character: "madis",
+                          dialog: "When the job is done, bring something to prove it, and I’ll give you the rest of the reward. \n*Madis holds out a purse of money and a map.*",
+                          stageEnd: true
+                        }
                       }
                     }
                   }

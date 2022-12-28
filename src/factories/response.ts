@@ -31,7 +31,7 @@ export class Response {
     this.key.vAlign = 'bottom'
     this.key.hAlign = 'left'
     this.key.positionX = 5
-    this.key.color = Color4.White()
+    this.key.color = Color4.Yellow()
     this.key.isPointerBlocker = false
     // this.key.value = key
   }

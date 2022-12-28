@@ -64,13 +64,16 @@ export class DialogHelper {
     this.portrait.sourceLeft = 0
 
     this.dialog = new UIText(this.promptWrapper)
+    this.dialog.adaptWidth = false
+    this.dialog.textWrapping = true
     this.dialog.width = '80%'
+    // this.dialog.height = '200%'
     this.dialog.font = new Font(Fonts.SanFrancisco)
     this.dialog.fontSize = 20
-    this.dialog.vAlign = 'center'
     this.dialog.hAlign = 'center'
+    this.dialog.vAlign = 'top'
     this.dialog.positionX = '15%'
-    this.dialog.positionY = '21%'
+    this.dialog.positionY = -55
     this.dialog.color = Color4.White()
 
     this.response0 = new Response(this.promptWrapper, -10)
@@ -107,7 +110,7 @@ export class DialogHelper {
     if ( dialogOptions.skillCheck ) {
       var outcome = this.rollD20() > dialogOptions.skillCheck ? 'success' : 'failure'
 
-      this.say(characterName, dialogOptions[outcome])
+      return this.say(characterName, dialogOptions[outcome])
     }
 
     // TODO: this should be on the character model directly
@@ -117,8 +120,6 @@ export class DialogHelper {
     actions.forEach(function(action: any) {
       self.performAction(action)
     })
-
-    const chunkedText = dialogOptions.dialog.match(/.{1,80}(\s|$)/g) || []
 
     if ( dialogOptions.playerResponses ) {
       const self = this
@@ -133,6 +134,8 @@ export class DialogHelper {
       })
     }
 
+    log('dialog', dialogOptions)
+
     if ( dialogOptions.npcResponse ) {
       this.response2.setKey('next')
       this.response2.selector.onClick = new OnClick(() => {
@@ -146,6 +149,18 @@ export class DialogHelper {
         this.hideDialogBox()
         player.unrestrictMovement()
       })
+    }
+
+    var chunkedText = dialogOptions.dialog.match(/.{1,80}(\s|$)/g) || []
+    chunkedText = chunkedText.flatMap(function(e) { return e.split("\n") })
+    log('length', chunkedText.length)
+    const linesToAdd = 4 - chunkedText.length
+
+    var i
+
+    for(i = 1; i <= linesToAdd; i ++) {
+      chunkedText.push(" ")
+      log(i, chunkedText)
     }
 
     this.dialog.value = chunkedText.join("\n")
@@ -185,11 +200,9 @@ export class DialogHelper {
 
   private showDialogBox() {
     this.promptWrapper.visible = true
-    this.promptWrapper.visible = true
   }
 
   private hideDialogBox() {
-    this.promptWrapper.visible = false
     this.promptWrapper.visible = false
   }
 

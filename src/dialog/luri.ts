@@ -36,7 +36,7 @@ export const dialogLuri = {
                 dialog: "*You silently give her the gold and leave*",
               },
               "I hope so too!": {
-                dialog: "*You pluck the gold from your purse and throw it at Luri* I hope so too!"
+                dialog: "*You pluck the gold from your purse and throw it at Luri* \nI hope so too!"
               }
             }
           }
