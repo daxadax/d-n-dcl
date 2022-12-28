@@ -62,7 +62,7 @@ export class Scene extends Entity {
     // place guild hall
     const guildHallModel = new GLTFShape('models/guild_hall.glb')
     const guildHall = new StaticModel(this.GUILD_HALL, guildHallModel, this, new Transform({
-      position: new Vector3(16, 0, 21),
+      position: new Vector3(16, 0, 24),
       rotation: Quaternion.Euler(0, 90, 0),
       scale: new Vector3(1, 1 ,1)
     }))
@@ -75,7 +75,7 @@ export class Scene extends Entity {
       guildHallDoorsModel,
       this,
       new Transform({
-        position: new Vector3(15.89, 0, 21),
+        position: new Vector3(15.89, 0, 24),
         rotation: Quaternion.Euler(0, 90, 0),
         scale: new Vector3(1, 1, 1)
       })
@@ -100,7 +100,7 @@ export class Scene extends Entity {
       'madis',
       this,
       new Transform({
-        position: new Vector3(8, 0.75, 16.5),
+        position: new Vector3(8, 0.75, 19.5),
         rotation: Quaternion.Euler(0, 0, 0),
         scale: new Vector3(1, 1 ,1)
       })
@@ -117,7 +117,7 @@ export class Scene extends Entity {
       'ivor',
       this,
       new Transform({
-        position: new Vector3(28.6, 0.75, 9.55),
+        position: new Vector3(28.6, 0.75, 12.55),
         rotation: Quaternion.Euler(0, 240, 0),
         scale: new Vector3(1, 1 ,1)
       })
@@ -134,7 +134,7 @@ export class Scene extends Entity {
       'luri',
       this,
       new Transform({
-        position: new Vector3(8, 0.75, 4),
+        position: new Vector3(8, 0.75, 7),
         rotation: Quaternion.Euler(0, 45, 0),
         scale: new Vector3(1, 1 ,1)
       })
