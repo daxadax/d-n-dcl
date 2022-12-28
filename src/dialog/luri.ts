@@ -1,6 +1,9 @@
 export const dialogLuri = {
   guild_hall: {
     0: {
+      dialog: "*Luri gives you a quick glance when you approach* \nCome back later, I'm busy now"
+    },
+    1: {
       dialog: "Oh, new faces, yeah, plain-looking, dirty cloak, means adventurer, means healing potions, wound ointments, antidote. Would you like a purse?",
       playerResponses: {
         "I'd just like some oil..": {
@@ -65,7 +68,7 @@ export const dialogLuri = {
         }
       }
     },
-    1: {
+    2: {
       dialog: "Come see me again after you've used up that oil"
     }
   }

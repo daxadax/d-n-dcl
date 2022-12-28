@@ -1,5 +1,4 @@
 // TODO
-// * require gold from madis before getting potion
 // * require potion and talking to ivor before leaving tavern
 // * clean up dialog
 

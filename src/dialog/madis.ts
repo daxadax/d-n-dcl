@@ -12,9 +12,14 @@ export const dialogMadis = {
               character: 'madis',
               dialog: "This is a map of our forest. I hope you know how to navigate. It marks the location of the snapping turtle, which has scattered all the animals and birds in the neighboring woods. We should kill it, but there is a problem...",
               npcResponse: {
-                character: 'madis',
+                character: "madis",
                 dialog: "Our weapons do not harm it. Take some gold and buy some oil for weapons, I can recommend a flame, it will both illuminate the target and cause a good wound. When you figure it out, bring something to prove it, and I’ll give you the rest of the reward. \n*Madis holds out a purse of money and a map.*",
-                stageEnd: true
+                stageEnd: true,
+                action: {
+                  character: "luri",
+                  location: "guild_hall",
+                  type: "unlockDialog"
+                }
               }
             }
           }
@@ -30,7 +35,12 @@ export const dialogMadis = {
               npcResponse: {
                 character: 'madis',
                 dialog: "Our weapons do not harm it. Take some gold and buy some oil for weapons, I can recommend a flame, it will both illuminate the target and cause a good wound. When you figure it out, bring something to prove it, and I’ll give you the rest of the reward. \n*Madis holds out a purse of money and a map.*",
-                stageEnd: true
+                stageEnd: true,
+                action: {
+                  character: "luri",
+                  location: "guild_hall",
+                  type: "unlockDialog"
+                }
               }
             }
           }
@@ -54,7 +64,12 @@ export const dialogMadis = {
                       npcResponse: {
                         character: 'madis',
                         dialog: "Our weapons do not harm it. Take some gold and buy some oil for weapons, I can recommend a flame, it will both illuminate the target and cause a good wound. When you figure it out, bring something to prove it, and I’ll give you the rest of the reward. \n*Madis holds out a purse of money and a map.*",
-                        stageEnd: true
+                        stageEnd: true,
+                        action: {
+                          character: "luri",
+                          location: "guild_hall",
+                          type: "unlockDialog"
+                        }
                       }
                     }
                   }
@@ -79,7 +94,12 @@ export const dialogMadis = {
                       npcResponse: {
                         character: 'madis',
                         dialog: "Our weapons do not harm it. Take some gold and buy some oil for weapons, I can recommend a flame, it will both illuminate the target and cause a good wound. When you figure it out, bring something to prove it, and I’ll give you the rest of the reward. \n*Madis holds out a purse of money and a map.*",
-                        stageEnd: true
+                        stageEnd: true,
+                        action: {
+                          character: "luri",
+                          location: "guild_hall",
+                          type: "unlockDialog"
+                        }
                       }
                     }
                   }

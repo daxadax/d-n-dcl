@@ -132,7 +132,7 @@ export class DialogHelper {
 
     if ( !dialogOptions.playerResponses && !dialogOptions.npcResponse ) {
       // TODO: this should be on the character model directly
-      this.performAction(dialogOptions.action, character)
+      this.performAction(dialogOptions.action)
 
       this.response2.setKey('end conversation')
       this.response2.selector.onClick = new OnClick(() => {
@@ -189,9 +189,18 @@ export class DialogHelper {
     this.promptWrapper.visible = false
   }
 
-  private performAction(action: string, character: any) {
-    if ( action === "removeModel" ) {
-      character.hideModel()
+  private performAction(action: any) {
+    if ( action === undefined ) { return null }
+
+    if ( action.type === "removeModel" ) {
+      this.characterLibrary.characters[action.character].hideModel()
+    }
+
+    if ( action.type === "unlockDialog" ) {
+      // NOTE: In theory, dialog stage should be unlocked for a location
+      // (forest, guild_hall, etc) - but that is not needed rn so won't
+      // implement as it causes extra complexity.
+      this.characterLibrary.characters[action.character].incrementDialogStage()
     }
   }
 }
