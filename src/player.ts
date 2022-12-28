@@ -4,6 +4,8 @@ import { getUserData } from "@decentraland/Identity"
 import { CharacterLibrary } from "./character_library"
 
 export class Player {
+  items: String[] = []
+
   data!: UserData
 
   async initialize(characterLibrary: CharacterLibrary) {

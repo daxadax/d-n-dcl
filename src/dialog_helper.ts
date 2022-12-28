@@ -1,3 +1,5 @@
+import * as ui from '@dcl/ui-scene-utils'
+
 import { Response } from './factories/response'
 import { CharacterLibrary } from './character_library'
 
@@ -145,11 +147,8 @@ export class DialogHelper {
     this.showDialogBox()
   }
 
-  displayEndDemoText() {
-    const text = new UIText(this.canvas)
-    text.value = "You can complete this task in the full version of this game"
-    text.vAlign = "bottom"
-    text.hAlign = "center"
+  displayText(textToDisplay: string) {
+    ui.displayAnnouncement(textToDisplay)
   }
 
   private rollD20() {
@@ -201,6 +200,10 @@ export class DialogHelper {
       // (forest, guild_hall, etc) - but that is not needed rn so won't
       // implement as it causes extra complexity.
       this.characterLibrary.characters[action.character].incrementDialogStage()
+    }
+
+    if ( action.type === "receiveItem" ) {
+      this.characterLibrary.characters[action.character].addItem(action.item)
     }
   }
 }

@@ -13,6 +13,7 @@ class Character {
   height: number
   positionX: number
   dialogStage: number
+  items: String[]
 
   entity!: Entity
 
@@ -22,7 +23,8 @@ class Character {
   constructor(
     name: string,
     texture: Texture | AvatarTexture,
-    dimensions: any) {
+    dimensions: any,
+    items: String[]) {
     this.name = name
     this.texture = texture
     this.sourceWidth = dimensions.sourceWidth
@@ -35,6 +37,9 @@ class Character {
 
     // initialize movementBind
     this.movementBind = new MovementBind()
+
+    // initialize items
+    this.items = items
 
     return this
   }
@@ -57,6 +62,16 @@ class Character {
     this.isBound = false
   }
 
+  addItem(item: string) {
+    this.items.push(item)
+  }
+
+  hasItem(item: string) {
+    // have to use indexOf instead of includes cause sdk hates updated js
+    // https://stackoverflow.com/a/55652107
+    return this.items.indexOf(item) !== -1
+  }
+
   hideModel() {
     this.entity.removeComponent(this.model)
   }
@@ -76,7 +91,8 @@ export class CharacterLibrary {
           width: 300,
           height: 300,
           positionX: -70
-        }
+        },
+        []
       ),
       luri: new Character(
         'Luri',
@@ -87,7 +103,8 @@ export class CharacterLibrary {
           width: 300,
           height: 350,
           positionX: -50
-        }
+        },
+        []
       ),
       madis: new Character(
         'Madis',
@@ -98,7 +115,8 @@ export class CharacterLibrary {
           width: 300,
           height: 350,
           positionX: -50
-        }
+        },
+        []
       ),
       player: null
     }
@@ -125,7 +143,8 @@ export class CharacterLibrary {
         width: 300,
         height: 350,
         positionX: -60
-      }
+      },
+      []
     )
   }
 }

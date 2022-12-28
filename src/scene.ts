@@ -15,8 +15,11 @@ export class Scene extends Entity {
 
   currentLocation!: string
 
-  // tavern entities
+  // locations
   GUILD_HALL = 'guild_hall'
+  FOREST = 'forest'
+
+  // tavern entities
   GUILD_HALL_DOORS_INNER = 'guild_hall_doors_inner'
   GUILD_HALL_DOORS_OUTER = 'guild_hall_doors_outer'
   IVOR = 'Ivor'
@@ -32,8 +35,6 @@ export class Scene extends Entity {
     this.MADIS
   ]
 
-  // guild_hall entities
-  FOREST = 'forest'
 
   constructor(characterLibrary: CharacterLibrary, dialogHelper: DialogHelper) {
     super('_scene')
@@ -82,7 +83,14 @@ export class Scene extends Entity {
 
     guildHallDoorsInner.addComponent(
       new OnPointerDown(
-        (e) => { this.transitionToForest() },
+        (e) => {
+          log( this.characterLibrary.characters['player'].items )
+          if ( this.characterLibrary.characters['player'].hasItem('flammable_oil') ) {
+            this.transitionToForest()
+          } else {
+            this.dialogHelper.displayText("You can't leave the guild hall yet!")
+          }
+        },
         { button: ActionButton.PRIMARY, hoverText: "Exit the Smoldering Widow" }
       )
     )
@@ -193,7 +201,7 @@ export class Scene extends Entity {
     const triggerActions = {
       onCameraEnter :() => {
         this.soundLibrary.play('turtle')
-        this.dialogHelper.displayEndDemoText()
+        this.dialogHelper.displayText("You can complete this task in the full version of this game")
       },
       enableDebug: false
     }

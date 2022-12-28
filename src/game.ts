@@ -1,8 +1,9 @@
 // TODO
-// * require potion before leaving tavern
 // * talking to ivor brings him to the forest (otherwise not there)
 // * luri avatar shift
 // * clean up dialog
+// * make a way to exit game after the ending
+// * load forest at start of game so delay isn't super long
 
 // base scene element
 import { Scene } from './scene'
