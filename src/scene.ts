@@ -226,7 +226,7 @@ export class Scene extends Entity {
     const triggerActions = {
       onCameraEnter :() => {
         this.soundLibrary.play('turtle')
-        this.dialogHelper.displayText("You can complete this task in the full version of this game")
+        this.dialogHelper.displayText("You can complete this task in the full version of the game. To restart the game, please refresh the page")
       },
       enableDebug: false
     }

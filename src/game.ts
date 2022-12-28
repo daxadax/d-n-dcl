@@ -1,6 +1,5 @@
 // TODO
 // * clean up dialog
-// * make a way to exit game after the ending
 // * add sound back in
 
 // base scene element
