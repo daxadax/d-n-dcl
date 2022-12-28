@@ -2,6 +2,7 @@ import { movePlayerTo } from '@decentraland/RestrictedActions'
 import * as utils from '@dcl/ecs-scene-utils'
 
 import { CharacterLibrary } from './character_library'
+import { ModelLibrary } from './model_library'
 import { DialogHelper } from './dialog_helper'
 import { StaticModel } from './static_model'
 import { SoundLibrary } from './sound_library'
@@ -11,7 +12,12 @@ import { dialog } from './dialog_library'
 export class Scene extends Entity {
   characterLibrary: CharacterLibrary
   dialogHelper: DialogHelper
+  modelLibrary: ModelLibrary
   soundLibrary: SoundLibrary
+
+  // location entities to preload
+  forest: StaticModel
+  guildHall: StaticModel
 
   currentLocation!: string
 
@@ -36,7 +42,7 @@ export class Scene extends Entity {
   ]
 
 
-  constructor(characterLibrary: CharacterLibrary, dialogHelper: DialogHelper) {
+  constructor(characterLibrary: CharacterLibrary, dialogHelper: DialogHelper, modelLibrary: ModelLibrary) {
     super('_scene')
     engine.addEntity(this)
     const basePosition = new Transform({
@@ -48,31 +54,50 @@ export class Scene extends Entity {
 
     this.characterLibrary = characterLibrary
     this.dialogHelper = dialogHelper
+    this.modelLibrary = modelLibrary
     this.soundLibrary = new SoundLibrary()
+
+    this.forest = new StaticModel(
+      this.FOREST,
+      this.modelLibrary.forest,
+      this,
+      new Transform({
+        position: new Vector3(16, 0, 24),
+        rotation: Quaternion.Euler(0, 0, 0),
+        scale: new Vector3(1, 1 ,1)
+      })
+    )
+
+    this.guildHall = new StaticModel(
+      this.GUILD_HALL,
+      this.modelLibrary.guildHall,
+      this,
+      new Transform({
+        position: new Vector3(16, 0, 24),
+        rotation: Quaternion.Euler(0, 90, 0),
+        scale: new Vector3(1, 1 ,1)
+      })
+    )
+
+    engine.removeEntity(this.forest)
+    engine.removeEntity(this.guildHall)
   }
 
   initializeGuildHall() {
     // set current location
-    this.currentLocation = 'guild_hall'
+    this.currentLocation = this.GUILD_HALL
     this.dialogHelper.setCurrentLocation(this.currentLocation)
 
     // start background music loop
     // this.soundLibrary.playBackgroundMusic(this.currentLocation)
 
     // place guild hall
-    const guildHallModel = new GLTFShape('models/guild_hall.glb')
-    const guildHall = new StaticModel(this.GUILD_HALL, guildHallModel, this, new Transform({
-      position: new Vector3(16, 0, 24),
-      rotation: Quaternion.Euler(0, 90, 0),
-      scale: new Vector3(1, 1 ,1)
-    }))
+    engine.addEntity(this.guildHall)
 
     // place guild hall doors
-    const guildHallDoorsModel = new GLTFShape('models/guild_hall_doors.glb')
-
     const guildHallDoorsInner = new StaticModel(
       this.GUILD_HALL_DOORS_INNER,
-      guildHallDoorsModel,
+      this.modelLibrary.guildHallDoors,
       this,
       new Transform({
         position: new Vector3(15.89, 0, 24),
@@ -148,23 +173,20 @@ export class Scene extends Entity {
   }
 
   initializeForest() {
-    this.currentLocation = 'forest'
+    this.currentLocation = this.FOREST
     this.dialogHelper.setCurrentLocation(this.currentLocation)
 
     // start background music loop
     this.soundLibrary.playBackgroundMusic(this.currentLocation)
 
     // place forest
-    const forestModel = new GLTFShape('models/forest.glb')
-    const forest = new StaticModel(this.FOREST, forestModel, this, new Transform({
-      position: new Vector3(16, 0, 24),
-      rotation: Quaternion.Euler(0, 0, 0),
-      scale: new Vector3(1, 1 ,1)
-    }))
+    engine.addEntity(this.forest)
 
     // move character next to ivor at "start" of the forest path
     movePlayerTo({ x: 12, y: 0, z: 40 }, { x: 32, y: 2, z: 32 })
 
+    // TODO: shouldn't reinitialize, just re-place
+    // TODO: need to specify which model (in this case standing vs sitting ivor)
     const ivor = this.characterLibrary.initializeCharacter(
       'ivor',
       this,

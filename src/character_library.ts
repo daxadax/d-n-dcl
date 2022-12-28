@@ -1,7 +1,8 @@
+import { ModelLibrary } from './model_library'
+import { MovementBind } from './movement_bind'
 import { Player } from './player'
-import { StaticModel } from './static_model'
 import { Scene } from './scene'
-import { MovementBind } from './movementBind'
+import { StaticModel } from './static_model'
 
 class Character {
   name: string
@@ -21,6 +22,7 @@ class Character {
   private isBound: boolean = false
 
   constructor(
+    modelLibrary: ModelLibrary,
     name: string,
     texture: Texture | AvatarTexture,
     dimensions: any,
@@ -33,7 +35,7 @@ class Character {
     this.height = dimensions.height
     this.positionX = dimensions.positionX
     this.dialogStage = 0
-    this.model = new GLTFShape('models/characters/'+ name +'.glb')
+    this.model = modelLibrary[name.toLowerCase()]
 
     // initialize movementBind
     this.movementBind = new MovementBind()
@@ -79,10 +81,14 @@ class Character {
 
 export class CharacterLibrary {
   characters: any
+  modelLibrary: ModelLibrary
 
-  constructor() {
+  constructor(modelLibrary: ModelLibrary) {
+    this.modelLibrary = modelLibrary
+
     this.characters =  {
       ivor: new Character(
+        this.modelLibrary,
         'Ivor',
         new Texture('images/characters/ivor.png'),
         {
@@ -95,6 +101,7 @@ export class CharacterLibrary {
         []
       ),
       luri: new Character(
+        this.modelLibrary,
         'Luri',
         new Texture('images/characters/luri.png'),
         {
@@ -107,6 +114,7 @@ export class CharacterLibrary {
         []
       ),
       madis: new Character(
+        this.modelLibrary,
         'Madis',
         new Texture('images/characters/madis.png'),
         {
@@ -135,6 +143,7 @@ export class CharacterLibrary {
 
   setPlayerCharacter(player: Player) {
     this.characters.player = new Character(
+      this.modelLibrary,
       player.data.displayName,
       new Texture('images/characters/player.png'),
       {
