@@ -1,6 +1,3 @@
-// TODO
-// * add sound back in
-
 // base scene element
 import { Scene } from './scene'
 

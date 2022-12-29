@@ -88,7 +88,7 @@ export class Scene extends Entity {
     this.dialogHelper.setCurrentLocation(this.currentLocation)
 
     // start background music loop
-    // this.soundLibrary.playBackgroundMusic(this.currentLocation)
+    this.soundLibrary.playBackgroundMusic(this.currentLocation)
 
     // place guild hall
     engine.addEntity(this.guildHall)
