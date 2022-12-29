@@ -77,6 +77,10 @@ class Character {
   hideModel() {
     this.entity.removeComponent(this.model)
   }
+
+  updateModel(model: GLTFShape) {
+    this.model = model
+  }
 }
 
 export class CharacterLibrary {
@@ -130,7 +134,12 @@ export class CharacterLibrary {
     }
   }
 
-  initializeCharacter(name: string, scene: Scene, transform: Transform) {
+  initializeCharacter(name: string, scene: Scene, transform: Transform, modelName?: string) {
+    // update character model if modelName parameter is given
+    if( modelName !== undefined ) {
+      this.characters[name].updateModel(this.modelLibrary[modelName])
+    }
+
     this.characters[name].entity = new StaticModel(
       this.characters[name].name,
       this.characters[name].model,

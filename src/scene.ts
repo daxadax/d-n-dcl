@@ -41,7 +41,6 @@ export class Scene extends Entity {
     this.MADIS
   ]
 
-
   constructor(characterLibrary: CharacterLibrary, dialogHelper: DialogHelper, modelLibrary: ModelLibrary) {
     super('_scene')
     engine.addEntity(this)
@@ -123,7 +122,6 @@ export class Scene extends Entity {
       )
     )
 
-    // character - madis
     const madis = this.characterLibrary.initializeCharacter(
       'madis',
       this,
@@ -189,8 +187,6 @@ export class Scene extends Entity {
     // move character next to ivor at "start" of the forest path
     movePlayerTo({ x: 12, y: 0, z: 40 }, { x: 32, y: 2, z: 32 })
 
-    // TODO: shouldn't reinitialize, just re-place
-    // TODO: need to specify which model (in this case standing vs sitting ivor)
     const ivor = this.characterLibrary.initializeCharacter(
       'ivor',
       this,
@@ -198,7 +194,8 @@ export class Scene extends Entity {
         position: new Vector3(12, 0, 41),
         rotation: Quaternion.Euler(0, 90, 0),
         scale: new Vector3(1, 1 ,1)
-      })
+      }),
+      'ivorStanding'
     )
 
     ivor.addComponent(

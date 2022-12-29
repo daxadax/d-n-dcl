@@ -1,6 +1,5 @@
 // TODO
 // * add sound back in
-// * add standing ivor model in forest
 
 // base scene element
 import { Scene } from './scene'
