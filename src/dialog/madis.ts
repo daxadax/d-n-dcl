@@ -51,10 +51,10 @@ export const dialogMadis = {
             }
           }
         },
-        "[you think you recognize this man] Aren't you...?": {
+        "{D20 Difficulty 12} [you think you recognize this man] Aren't you...?": {
           skillCheck: 12,
           success: {
-            dialog: "[success] Is it really you..? Aren't you Madis the Flame?",
+            dialog: "[success #RESULT] Is it really you..? Aren't you Madis the Flame?",
             npcResponse: {
               character: 'madis',
               dialog: "Come on, it was a hundred years ago, but still I’m glad to be remembered. So why did you come to the abode of adventurers?",
@@ -83,7 +83,7 @@ export const dialogMadis = {
             }
           },
           failure: {
-            dialog: "[failure] Aren't you Benedict Whisperbrew, the Eunuch?",
+            dialog: "[failure #RESULT] Aren't you Benedict Whisperbrew, the Eunuch?",
             npcResponse: {
               character: 'madis',
               dialog: "...no.",

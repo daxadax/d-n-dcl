@@ -5,6 +5,9 @@ import { Response } from './factories/response'
 import { CharacterLibrary } from './character_library'
 
 export class DialogHelper {
+  SKILL_CHECK_TEXT_COLOR = Color4.Blue()
+  PC_RESPONSE_TEXT_COLOR = Color4.Yellow()
+
   canvas: UICanvas
   characterLibrary: CharacterLibrary
   currentLocation!: string
@@ -140,8 +143,10 @@ export class DialogHelper {
 
     // handle skill checks
     if ( dialogOptions.skillCheck ) {
-      var outcome = this.rollD20() > dialogOptions.skillCheck ? 'success' : 'failure'
+      const d20Result = this.rollD20()
+      const outcome = d20Result > dialogOptions.skillCheck ? 'success' : 'failure'
 
+      dialogOptions[outcome]['dialog'] = dialogOptions[outcome]['dialog'].replace(/#RESULT/, d20Result)
       return this.say(characterName, dialogOptions[outcome])
     }
 
@@ -153,14 +158,18 @@ export class DialogHelper {
       self.performAction(action)
     })
 
+    // set player responses
     if ( dialogOptions.playerResponses ) {
       const self = this
 
       Object.keys(dialogOptions.playerResponses).forEach(function(key: string, i: number) {
-        var response = self['response'+ i as any]
+        const response = self['response'+ i as any]
+        const isSkillCheck = key.match(/^{/) !== null
 
-        self['response'+ i].setKey(key)
-        self['response'+ i].selector.onClick = new OnClick(() => {
+        if ( isSkillCheck ) { response.key.color = self.SKILL_CHECK_TEXT_COLOR }
+
+        response.setKey(key)
+        response.selector.onClick = new OnClick(() => {
           self.say('player', dialogOptions.playerResponses[key])
         })
       })
@@ -232,12 +241,15 @@ export class DialogHelper {
 
     // reset text
     this.response0.setKey('')
+    this.response0.key.color = this.PC_RESPONSE_TEXT_COLOR
     this.response0.selector.onClick = null
 
     this.response1.setKey('')
+    this.response1.key.color = this.PC_RESPONSE_TEXT_COLOR
     this.response1.selector.onClick = null
 
     this.response2.setKey('')
+    this.response2.key.color = this.PC_RESPONSE_TEXT_COLOR
     this.response2.selector.onClick = null
   }
 
@@ -252,7 +264,6 @@ export class DialogHelper {
   private performAction(action: any) {
     if ( action === undefined ) { return null }
 
-    log("performing action: "+ action.type)
     const character = this.characterLibrary.characters[action.character]
 
     if ( action.type === "removeModel" ) {

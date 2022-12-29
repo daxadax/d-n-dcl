@@ -41,10 +41,10 @@ export const dialogLuri = {
             }
           }
         },
-        "*Attempt to charm Luri*": {
+        "{D20 Difficulty 16} *Attempt to charm Luri*": {
           skillCheck: 16,
           success: {
-            dialog: "[success] I’d love to buy this whole shop, but I can’t afford it right now. But there are some things I can afford. Flammable oil, is there such a thing?",
+            dialog: "[success #RESULT] I’d love to buy this whole shop, but I can’t afford it right now. But there are some things I can afford. Flammable oil, is there such a thing?",
             npcResponse: {
               character: 'luri',
               dialog: "I’d be glad if you’d come back here with a cartload of gold. Here’s your oil, let's call it 15 gold pieces. I hope to see you again.",
@@ -56,7 +56,7 @@ export const dialogLuri = {
             }
           },
           failure: {
-            dialog: "[faillure] *You try to make a comparison between the flammable oil and her bright red hair, but it sounds super weird*",
+            dialog: "[faillure #RESULT] *You try to make a comparison between the flammable oil and her bright red hair, but it sounds super weird*",
             actions: [{character: "luri", type: "updateAvatar", path: "luri-unhappy.png"}],
             npcResponse: {
               character: 'luri',
