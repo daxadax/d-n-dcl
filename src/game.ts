@@ -19,7 +19,6 @@ const modelLibrary = new ModelLibrary()
 const characterLibrary = new CharacterLibrary(modelLibrary)
 const dialogHelper = new DialogHelper(canvas, characterLibrary)
 
-// dialogHelper.displayLoadingScreen()
 player.initialize(characterLibrary)
 
 // build scene
