@@ -247,7 +247,7 @@ export class Scene extends Entity {
       })
     }
 
-    // this.soundLibrary.pauseBackgroundMusic(this.currentLocation)
+    this.soundLibrary.pauseBackgroundMusic(this.currentLocation)
     this.initializeForest()
   }
 }
