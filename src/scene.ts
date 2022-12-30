@@ -205,6 +205,14 @@ export class Scene extends Entity {
       )
     )
 
+    // NOTE: this is a temp solution -
+    // it works for the demo but if the PC came back to the tavern
+    // it would break as ivor would be back to their initial dialog
+    // NOTE: it's probably also better to return the character class
+    // from the #initializeCharacter function rather than the entity
+    // reset characters dialog stage
+    this.characterLibrary.characters['ivor'].dialogStage = 0
+
     // trigger area for turtle sound
     const triggerArea = new Entity()
 
