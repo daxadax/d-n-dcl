@@ -211,7 +211,7 @@ export class DialogHelper {
   displayLoadingScreen() {
     this.loadingScreen.visible = true
 
-    utils.setTimeout(8000, ()=>{
+    utils.setTimeout(10000, ()=>{
       this.loadingScreen.visible = false
     })
   }
